@@ -19,9 +19,9 @@ public class GitRepositoriesFacade {
         try {
             gitRepositories = gitHubClient.getRepositories(userName);
         } catch (HttpClientErrorException e) {
-            throw new UserNameNotFoundException();
-
+            throw new UserNameNotFoundException(e.getStatusCode(), e.getMessage());
         }
+
         return gitRepositories;
     }
 }
